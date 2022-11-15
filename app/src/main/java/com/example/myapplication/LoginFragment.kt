@@ -37,7 +37,6 @@ class LoginFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        initAction()
     }
 
     override fun onCreateView(
@@ -46,27 +45,35 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false)
-
     }
-    private fun initAction(){
-        btn_login.setOnClickListener{
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initAction()
+    }
+
+    private fun initAction() {
+        btn_login.setOnClickListener {
             userLogin()
         }
     }
-    private fun userLogin(){
+
+    private fun userLogin() {
 
         val request = UserRequest()
         request.username = q_username.text.toString().trim()
         request.password = q_password.text.toString().trim()
 
         val retro = RetrofitClient().getRetrofitClientInstance().create(Api::class.java)
-        retro.UserLogin(request).enqueue(object : Callback <UserResponse>{
+
+        retro.userLogin(request).enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 val user = response.body()
-                    if (user != null) {
-                        Log.e("token", user.token.toString())
-                        Log.e("token", user.priviledge.toString())
-                    }
+                if (user != null) {
+                    Log.e("token", user.token.toString())
+                    Log.e("token", user.priviledge.toString())
+                }
 
             }
 
