@@ -1,14 +1,13 @@
-package com.example.myapplication.api
-
+package com.ssrdi.co.id.myradboox.api
 
 import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
 class RetrofitClient {
-    fun getRetrofitClientInstance(): Retrofit {
-        val BASE_URL = "https://rantingnupekandangan.com/api/v1/"
+    fun getRetrofitClientInstance() : Retrofit {
+        val BASE_URL = "https://api.radboox.com/"
 
         val gson = GsonBuilder().setLenient().create()
         val retrofit = Retrofit.Builder()
@@ -17,4 +16,5 @@ class RetrofitClient {
             .build()
         return retrofit
     }
+
 }

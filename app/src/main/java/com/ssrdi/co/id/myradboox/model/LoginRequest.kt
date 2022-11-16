@@ -1,9 +1,9 @@
-package com.example.myapplication.model
+package com.ssrdi.co.id.myradboox.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class UserRequest {
+class LoginRequest {
     @SerializedName("username")
     @Expose
     var username:String?=null
